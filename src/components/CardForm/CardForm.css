@@ -1,0 +1,87 @@
+.card-form {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border: 2px solid #e0e0e0;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+}
+
+.form-group textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.btn-submit,
+.btn-cancel {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-submit {
+  background: #667eea;
+  color: white;
+}
+
+.btn-submit:hover {
+  background: #5568d3;
+  transform: translateY(-2px);
+}
+
+.btn-cancel {
+  background: white;
+  color: #666;
+  border: 1px solid #ddd;
+}
+
+.btn-cancel:hover {
+  background: #f0f0f0;
+}
+
+@media (max-width: 768px) {
+  .card-form {
+    padding: 15px;
+  }
+
+  .form-buttons {
+    flex-direction: column;
+  }
+
+  .btn-submit,
+  .btn-cancel {
+    width: 100%;
+  }
+}

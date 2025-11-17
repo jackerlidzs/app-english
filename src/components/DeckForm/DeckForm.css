@@ -1,0 +1,80 @@
+.deck-form {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  margin-bottom: 30px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.deck-form-input {
+  flex: 1;
+  min-width: 250px;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.deck-form-input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.deck-form-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-submit,
+.btn-cancel {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-submit {
+  background: #667eea;
+  color: white;
+}
+
+.btn-submit:hover {
+  background: #5568d3;
+  transform: translateY(-2px);
+}
+
+.btn-cancel {
+  background: #f0f0f0;
+  color: #666;
+}
+
+.btn-cancel:hover {
+  background: #e0e0e0;
+}
+
+@media (max-width: 768px) {
+  .deck-form {
+    flex-direction: column;
+  }
+
+  .deck-form-input {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .deck-form-buttons {
+    width: 100%;
+  }
+
+  .btn-submit,
+  .btn-cancel {
+    flex: 1;
+  }
+}
