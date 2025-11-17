@@ -4,6 +4,7 @@ import DeckList from './components/DeckList/DeckList';
 import StudyView from './components/StudyView/StudyView';
 import DeckForm from './components/DeckForm/DeckForm';
 import Header from './components/Header/Header';
+import { sampleVocabulary } from './data/sampleVocabulary';
 
 function App() {
   const [decks, setDecks] = useState([]);
@@ -15,13 +16,44 @@ function App() {
     const savedDecks = localStorage.getItem('decks');
     if (savedDecks) {
       setDecks(JSON.parse(savedDecks));
+    } else {
+      // Create a default deck with sample vocabulary on first load
+      createDefaultDeck();
     }
   }, []);
 
   // Save decks to localStorage
   useEffect(() => {
-    localStorage.setItem('decks', JSON.stringify(decks));
+    if (decks.length > 0) {
+      localStorage.setItem('decks', JSON.stringify(decks));
+    }
   }, [decks]);
+
+  const createDefaultDeck = () => {
+    const defaultDeck = {
+      id: Date.now(),
+      name: 'English Vocabulary',
+      cards: sampleVocabulary.map(word => ({
+        ...word,
+        id: Date.now() + Math.random(),
+        front: word.english,
+        back: `${word.vietnamese}\n\nExample: ${word.example}`,
+        interval: 1,
+        ease: 2.5,
+        reviews: 0,
+        lapses: 0,
+        nextReview: new Date(),
+        lastReview: null
+      })),
+      createdAt: new Date(),
+      stats: {
+        new: sampleVocabulary.length,
+        learning: 0,
+        review: 0
+      }
+    };
+    setDecks([defaultDeck]);
+  };
 
   const handleCreateDeck = (deckName) => {
     const newDeck = {
@@ -57,6 +89,8 @@ function App() {
           const newCard = {
             ...card,
             id: Date.now(),
+            front: card.english,
+            back: `${card.vietnamese}\n\nExample: ${card.example}`,
             interval: 1,
             ease: 2.5,
             reviews: 0,
@@ -94,10 +128,10 @@ function App() {
 
   const updateCardStats = (card, answer) => {
     const now = new Date();
-    let interval = card.interval;
-    let ease = card.ease;
-    let reviews = card.reviews + 1;
-    let lapses = card.lapses;
+    let interval = card.interval || 1;
+    let ease = card.ease || 2.5;
+    let reviews = (card.reviews || 0) + 1;
+    let lapses = card.lapses || 0;
 
     if (answer === 'again') {
       ease = Math.max(1.3, ease - 0.2);
@@ -143,7 +177,12 @@ function App() {
         if (deck.id === currentDeck.id) {
           return {
             ...deck,
-            cards: deck.cards.map(c => (c.id === cardId ? { ...c, ...updatedCard } : c))
+            cards: deck.cards.map(c => (c.id === cardId ? { 
+              ...c, 
+              ...updatedCard,
+              front: updatedCard.english,
+              back: `${updatedCard.vietnamese}\n\nExample: ${updatedCard.example}`
+            } : c))
           };
         }
         return deck;

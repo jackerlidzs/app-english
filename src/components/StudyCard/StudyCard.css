@@ -3,14 +3,14 @@
   justify-content: center;
   align-items: center;
   perspective: 1000px;
-  min-height: 400px;
+  min-height: 500px;
   margin: 20px 0;
 }
 
 .study-card {
   width: 100%;
-  max-width: 600px;
-  height: 400px;
+  max-width: 650px;
+  height: 450px;
   cursor: pointer;
   position: relative;
   transform-style: preserve-3d;
@@ -34,69 +34,63 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
+  padding: 30px;
   border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
   backface-visibility: hidden;
-  text-align: center;
-}
-
-.study-card-front {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: white;
 }
 
 .study-card-back {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: white;
   transform: rotateY(180deg);
 }
 
-.card-label {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  opacity: 0.7;
-  margin-bottom: 20px;
-  letter-spacing: 2px;
-}
-
-.card-content {
-  font-size: 2rem;
-  font-weight: 600;
-  line-height: 1.6;
-  word-wrap: break-word;
-  white-space: pre-wrap;
+.card-top-section {
   flex: 1;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+}
+
+.word-display {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
-.card-hint {
-  font-size: 0.85rem;
-  opacity: 0.6;
+.card-image-container {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.card-image {
+  max-width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.example-section {
+  background: #f8fafc;
+  padding: 16px;
+  border-radius: 8px;
   margin-top: 20px;
-  font-style: italic;
+  border-left: 4px solid #3b82f6;
 }
 
 @media (max-width: 768px) {
   .study-card {
-    height: 300px;
+    height: 400px;
     max-width: 100%;
   }
 
   .study-card-front,
   .study-card-back {
-    padding: 30px;
-  }
-
-  .card-content {
-    font-size: 1.5rem;
+    padding: 20px;
   }
 
   .study-card-container {
-    min-height: 300px;
+    min-height: 400px;
   }
 }
